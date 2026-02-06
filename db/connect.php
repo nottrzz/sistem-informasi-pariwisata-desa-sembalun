@@ -1,0 +1,1 @@
+<?php $koneksi = mysqli_connect("localhost","root","dbwisata") or die(mysqli_connect_errno());
