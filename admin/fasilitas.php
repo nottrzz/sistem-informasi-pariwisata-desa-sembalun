@@ -49,7 +49,7 @@
 
             <!-- Button Tambah -->
             <button class="bg-green-700 hover:bg-green-900 transition text-white font-bold px-8 py-3 rounded-2xl shadow-md my-5">
-              <a href="">Tambah Destinasi</a>  
+              <a href="../crud/tambah-fasilitas.php">Tambah Fasilitas</a>  
             </button>
 
             <!-- Table -->
@@ -58,20 +58,24 @@
                     <thead class="bg-green-700 text-white">
                         <tr>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">No</th>
-                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Nama Destinasi</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Nama Fasilitas</th>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Keterangan</th>
-                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Gambar</th>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                        <?php
+                        include "../db/connect.php";
+                        $no = 1;
+                        
+                        $ambildata= mysqli_query($koneksi,"SELECT * FROM fasilitas order by id_fasilitas DESC");
+
+                        while($res = $tampilkan = mysqli_fetch_assoc($ambildata)):
+                        ?>
                         <tr class="hover:bg-gray-100 transition">
-                            <td class="px-6 py-4 whitespace-nowrap">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Ochy</td>
-                            <td class="px-6 py-4 whitespace-nowrap">chyy</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <img src="" alt="">
-                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $no++ ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $res['nama_fasilitas'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap max-w-md truncate"><?= $res['keterangan'] ?></td>
                             <td class="px-6 py-4 flex gap-4 text-xl">
                                 <a href="edit.php?id=1" class="text-blue-600 hover:text-blue-800 transition">
                                     <i class="fa fa-edit"></i>
@@ -81,6 +85,8 @@
                                 </a>
                             </td>
                         </tr>
+                        <?php endwhile;
+                        ?>
 
                     </tbody>
                 </table>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "./db/connect.php";
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -68,22 +73,30 @@
 
             <div class="grid grid-cols-1md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- dest 1 ye -->
+                 <?php
+                 $no = 1;
+
+                 $qwery= mysqli_query($koneksi,"SELECT * FROM destinasi ORDER BY id_destinasi DESC LIMIT 6");
+
+                 while($res = mysqli_fetch_assoc($qwery)):
+                 ?>
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover transition-all">
                     <div class="h-56 overflow-hidden">
-                        <img src="img/rinjani.webp" 
+                        <img src="img/<?= $res['gambar'] ?>" 
                              alt="Bali" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-gray-800">Gunung Rinjani</h3>
+                            <h3 class="text-xl font-bold text-gray-800"><?= $res['nama_destinasi'] ?></h3>
                             <span class="bg-blue-100 text-green-700 text-sm font-medium px-3 py-1 rounded-full">Populer</span>
                         </div>
-                        <p class="text-gray-600 mb-4">Pulau dewata dengan pantai menakjubkan, budaya Hindu yang kaya, dan suasana spiritual yang memikat.</p>
+                        <p class="text-gray-600 mb-4"><?= $res['keterangan'] ?></p>
                         <div class="flex justify-between text-gray-500 text-sm">
                          
                         </div>
                     </div>
                 </div>
+                <?php endwhile; ?>
             </div>
             </div>
         </div>
@@ -98,15 +111,25 @@
          </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <?php
+                 $no = 1;
+
+                 $qwery= mysqli_query($koneksi,"SELECT * FROM fasilitas ORDER BY id_fasilitas DESC LIMIT 6");
+
+                 while($res = mysqli_fetch_assoc($qwery)):
+                 ?>
                 <div class="bg-gradient-to-br from-purple-50 to-white rounded-2xl overflow-hidden shadow-xl border border-purple-100 transition-all hover:shadow-2xl">
                     <div class="p-8">
                         <div class="mb-6">
                             <span class="bg-purple-100 text-purple-600 text-sm font-bold px-4 py-2 rounded-full">The bess</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Penginapan & Homestay</h3>
-                        <p class="text-gray-600 mb-6">Tersedia berbagai pilihan homestay dan penginapan dengan suasana khas pedesaan dan udara sejuk pegunungan, cocok untuk wisatawan yang ingin menginap dengan nyaman dekat alam.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2"><?= $res['nama_fasilitas'] ?></h3>
+                        <p class="text-gray-600 mb-6"><?= $res['keterangan'] ?></p>
                     </div>
                 </div>
+                <?php
+                endwhile;
+                ?>
             </div>
         </div>
     </section>

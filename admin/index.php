@@ -54,7 +54,18 @@
                             <div class="flex justify-between items-start">
                                 <div>
                                     <p class="text-gray-500 text-sm">Total Destinasi</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2">24</p>
+                                    <?php
+                                    include "../db/connect.php";
+
+                                $q = mysqli_query($koneksi, "
+                                                            SELECT
+                                                                (SELECT COUNT(*) FROM destinasi) AS total_destinasi,
+                                                                (SELECT COUNT(*) FROM user) AS total_user,
+                                                                (SELECT COUNT(*) FROM fasilitas) AS total_fasilitas
+                                                            ");
+                                    $ye = mysqli_fetch_assoc($q);
+                                    ?>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2"><?php echo $ye['total_destinasi'] ?></p>
                                 </div>
                                 <div class="bg-blue-100 p-3 rounded-lg">
                                     <i class="fas fa-map-marked-alt text-blue-600 text-xl"></i>
@@ -71,7 +82,7 @@
                             <div class="flex justify-between items-start">
                                 <div>
                                     <p class="text-gray-500 text-sm">Total Users</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2">1,254</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2"><?php echo $ye['total_user'] ?></p>
                                 </div>
                                 <div class="bg-green-100 p-3 rounded-lg">
                                     <i class="fas fa-users text-green-600 text-xl"></i>
@@ -88,7 +99,7 @@
                             <div class="flex justify-between items-start">
                                 <div>
                                     <p class="text-gray-500 text-sm">Fasilitas</p>
-                                    <p class="text-3xl font-bold text-gray-800 mt-2">186</p>
+                                    <p class="text-3xl font-bold text-gray-800 mt-2"><?php echo $ye['total_fasilitas'] ?></p>
                                 </div>
                                 <div class="bg-purple-100 p-3 rounded-lg">
                                     <i class="fas fa-hotel text-purple-600 text-xl"></i>

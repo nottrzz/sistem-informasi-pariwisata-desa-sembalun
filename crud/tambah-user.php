@@ -1,3 +1,8 @@
+<?php
+include "../db/connect.php";
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -44,32 +49,38 @@
             <?php require "../component/top-header.php"; ?>
 
             <div class="max-w-4xl mx-auto mt-10 bg-white rounded-xl shadow-lg p-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Tambah Destinasi Baru</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Tambah User baru</h2>
                 
-                <form action="tambah_destinasi.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form action="tambah-user.php" method="POST" class="space-y-6">
 
                     <div>
-                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">Nama Destinasi</label>
-                        <input type="text" name="nama" id="nama" placeholder="Masukkan nama destinasi" 
+                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
+                        <input type="text" name="nama" id="nama" placeholder="Masukkan nama fasilitas" 
                             class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
                     </div>
-
                     <div>
-                        <label for="gambar" class="block text-sm font-medium text-gray-700 mb-2">Upload Gambar</label>
-                        <input type="file" name="gambar" id="gambar" 
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">username</label>
+                        <input type="text" name="username" id="nama" placeholder="Masukkan username" 
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
                     </div>
-
                     <div>
-                        <label for="deskripsi" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" rows="5" placeholder="Masukkan deskripsi destinasi" 
-                                class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input type="password" name="password" id="nama" placeholder="Masukkan password" 
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
+                        <select name="role">
+                            <option value="">--default role--</option>
+                            <option value="1">admin</option>
+                            <option value="0">operator</option>
+                        </select>
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" 
+                        <button type="submit" name="submit"
                                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-lg shadow-md transition">
-                            Simpan Destinasi
+                            Tambah Data User
                         </button>
                     </div>
 
@@ -78,3 +89,35 @@
         </div>
     </div>
 </body>
+
+
+<?php
+
+
+if(isset($_POST['submit'])){
+    $nama = $_POST['nama'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+
+    $qwy = mysqli_query($koneksi,"INSERT INTO user(nama,username,password,role) VALUES('$nama','$username','$password','$role')");
+
+    if($qwy){
+         echo "
+                    <script>
+                        alert('BERHASIL menambahkan user baru');
+                    </script>
+                    ";
+        exit;
+    }else{
+         echo "
+                    <script>
+                        alert('Gagal Menambahkan data user');
+                    </script>
+                    ";
+    }
+}
+    
+
+
+?>

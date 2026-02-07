@@ -30,8 +30,7 @@
                         <li><a href="#home" class="text-gray-400 hover:text-blue-400 transition-all">Home</a></li>
                         <li><a href="#destinasi" class="text-gray-400 hover:text-blue-400 transition-all">Destinasi</a></li>
                         <li><a href="#paket" class="text-gray-400 hover:text-blue-400 transition-all">Fasilitas</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">Tentang Kami</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">Blog & Artikel</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-all">Kontak</a></li>
                     </ul>
                 </div>
                 

@@ -50,7 +50,7 @@
                             <p class="text-gray-400 text-sm">ochy</p>
                         </div>
                     </div>
-                    <a href="../function.php/logout.php" onclick="return confirm('apa anda yakin ingin keluar?')" class="flex items-center p-3 mt-2 rounded-lg hover:bg-gray-800 transition-all">
+                    <a href="../function/logout.php" onclick="return confirm('apa anda yakin ingin keluar?')" class="flex items-center p-3 mt-2 rounded-lg hover:bg-gray-800 transition-all">
                         <i class="fas fa-sign-out-alt mr-3"></i>
                         <span>Logout</span>
                     </a>

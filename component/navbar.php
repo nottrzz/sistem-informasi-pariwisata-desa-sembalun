@@ -6,7 +6,7 @@
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-green-700 font-medium transition-all">Home</a>
+                    <a href="../index.php" class="text-gray-700 hover:text-green-700 font-medium transition-all">Home</a>
                     <a href="#destinasi" class="text-gray-700 hover:text-green-700 font-medium transition-all">Destinasi</a>
                     <a href="#paket" class="text-gray-700 hover:text-green-700 font-medium transition-all">Fasilitas</a>
                     <a href="#kontak" class="text-gray-700 hover:text-green-700 font-medium transition-all">Kontak</a>

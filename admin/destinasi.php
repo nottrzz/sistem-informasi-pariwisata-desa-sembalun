@@ -45,7 +45,7 @@
     <div class="main-content flex-1 flex flex-col overflow-hidden">
         <?php require "../component/top-header.php"; ?>
 
-        <div class="overflow-x-auto mt-20 px-8 md:px-8">
+        <div class="overflow-x-auto mt-16 mb-2.5 px-8 md:px-8">
 
             <!-- Button Tambah -->
             <button class="bg-green-700 hover:bg-green-900 transition text-white font-bold px-8 py-3 rounded-2xl shadow-md my-5">
@@ -65,22 +65,32 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                        <?php
+                        include "../db/connect.php";
+                        $no = 1;
+                        
+                        $ambildata= mysqli_query($koneksi,"SELECT * FROM destinasi order by id_destinasi DESC");
+
+                        while($res = $tampilkan = mysqli_fetch_assoc($ambildata)):
+                        ?>
                         <tr class="hover:bg-gray-100 transition">
-                            <td class="px-6 py-4 whitespace-nowrap">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Ochy</td>
-                            <td class="px-6 py-4 whitespace-nowrap">chyy</td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $no++ ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $res['nama_destinasi'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap max-w-md truncate"><?= $res['keterangan'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <img src="" alt="">
+                                <img class="max-w-40" src="../img/<?= $res['gambar'] ?>" alt="">
                             </td>
                             <td class="px-6 py-4 flex gap-4 text-xl">
-                                <a href="edit.php?id=1" class="text-blue-600 hover:text-blue-800 transition">
+                                <a href="../crud/edit-destinasi.php?id=<?= $res['id_destinasi'] ?>" class="text-blue-600 hover:text-blue-800 transition">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="delete.php?id=1" onclick="return confirm('Apakah anda yakin mau hapus data ini?')" class="text-red-600 hover:text-red-800 transition">
+                                <a href="../crud/delete-destinasi.php?id=<?= $res['id_destinasi'] ?>" onclick="return confirm('Apakah anda yakin mau hapus data ini?')" class="text-red-600 hover:text-red-800 transition">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
+                        <?php endwhile;
+                        ?>
 
                     </tbody>
                 </table>

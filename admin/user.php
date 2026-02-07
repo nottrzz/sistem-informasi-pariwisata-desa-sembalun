@@ -49,7 +49,7 @@
 
             <!-- Button Tambah -->
             <button class="bg-green-700 hover:bg-green-900 transition text-white font-bold px-8 py-3 rounded-2xl shadow-md my-5">
-              <a href="">Tambah Destinasi</a>  
+              <a href="../crud/tambah-user.php">Tambah Data User</a>  
             </button>
 
             <!-- Table -->
@@ -58,29 +58,44 @@
                     <thead class="bg-green-700 text-white">
                         <tr>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">No</th>
-                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Nama Destinasi</th>
-                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Keterangan</th>
-                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Gambar</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Nama</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Username</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">role</th>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                         <tbody class="bg-white divide-y divide-gray-200">
+                        <?php
+                        include "../db/connect.php";
+                        $no = 1;
+                        
+                        $ambildata= mysqli_query($koneksi,"SELECT * FROM user order by id_user DESC");
+
+                        
+
+                        while($res = $tampilkan = mysqli_fetch_assoc($ambildata)):
+                             if($res['role'] == 1){
+                                $admin = "<p class='bg-green-200 px-2 text-center max-w-20 rounded-2xl'>Admin</p>";
+                             }else{
+                                $admin = "<p class='bg-yellow-200 px-2xl  text-center max-w-20 rounded-2xl'>Opereator</p>";
+                             }
+                        ?>
                         <tr class="hover:bg-gray-100 transition">
-                            <td class="px-6 py-4 whitespace-nowrap">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Ochy</td>
-                            <td class="px-6 py-4 whitespace-nowrap">chyy</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <img src="" alt="">
-                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $no++ ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $res['nama'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $res['username'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $admin ?></td>
                             <td class="px-6 py-4 flex gap-4 text-xl">
-                                <a href="edit.php?id=1" class="text-blue-600 hover:text-blue-800 transition">
+                                <a href="../crud/edit-user.php?id=<?= $res['id_user'] ?>" class="text-blue-600 hover:text-blue-800 transition">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="delete.php?id=1" onclick="return confirm('Apakah anda yakin mau hapus data ini?')" class="text-red-600 hover:text-red-800 transition">
+                                <a href="../crud/delete-user.php?id=<?= $res['id_user'] ?>" onclick="return confirm('Apakah anda yakin mau hapus data ini?')" class="text-red-600 hover:text-red-800 transition">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
+                        <?php endwhile;
+                        ?>
 
                     </tbody>
                 </table>
