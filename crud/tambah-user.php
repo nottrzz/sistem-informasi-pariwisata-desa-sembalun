@@ -55,7 +55,7 @@ session_start();
 
                     <div>
                         <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
-                        <input type="text" name="nama" id="nama" placeholder="Masukkan nama fasilitas" 
+                        <input type="text" name="nama" id="nama" placeholder="Masukkan nama pengguna" 
                             class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
                     </div>
                     <div>
@@ -117,7 +117,4 @@ if(isset($_POST['submit'])){
                     ";
     }
 }
-    
-
-
 ?>

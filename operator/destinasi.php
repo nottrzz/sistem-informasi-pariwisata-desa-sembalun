@@ -37,19 +37,19 @@
 </head>
 <body class="bg-gray-100">
   <!-- Main Container -->
-<div class="flex h-screen">
+<div class="flex min-h-screen">
     <!-- Sidebar -->
-    <?php require "../component/sidebar.php"; ?>
+    <?php require "../component/sidebar-operator.php"; ?>
 
     <!-- Main Content -->
     <div class="main-content flex-1 flex flex-col overflow-hidden">
-        <?php require "../component/top-header.php"; ?>
+        <?php require "../component/top-header-operator.php"; ?>
 
-        <div class="overflow-x-auto mt-20 px-8 md:px-8">
+        <div class="overflow-x-auto mt-5 px-8 md:px-8">
 
             <!-- Button Tambah -->
             <button class="bg-green-700 hover:bg-green-900 transition text-white font-bold px-8 py-3 rounded-2xl shadow-md my-5">
-              <a href="../crud/tambah-fasilitas.php">Tambah Fasilitas</a>  
+              <a href="../crud/tambah-destinasi.php">Tambah Destinasi</a>  
             </button>
 
             <!-- Table -->
@@ -58,8 +58,9 @@
                     <thead class="bg-green-700 text-white">
                         <tr>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">No</th>
-                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Nama Fasilitas</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Nama Destinasi</th>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Keterangan</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Gambar</th>
                             <th class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Aksi</th>
                         </tr>
                     </thead>
@@ -68,19 +69,22 @@
                         include "../db/connect.php";
                         $no = 1;
                         
-                        $ambildata= mysqli_query($koneksi,"SELECT * FROM fasilitas order by id_fasilitas DESC");
+                        $ambildata= mysqli_query($koneksi,"SELECT * FROM destinasi order by id_destinasi DESC");
 
                         while($res = $tampilkan = mysqli_fetch_assoc($ambildata)):
                         ?>
                         <tr class="hover:bg-gray-100 transition">
                             <td class="px-6 py-4 whitespace-nowrap"><?= $no++ ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap"><?= $res['nama_fasilitas'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= $res['nama_destinasi'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap max-w-md truncate"><?= $res['keterangan'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <img class="max-w-40" src="../img/<?= $res['gambar'] ?>" alt="">
+                            </td>
                             <td class="px-6 py-4 flex gap-4 text-xl">
-                                <a href="../crud/edit-fasilitas.php?id=<?= $res['id_fasilitas']?>" class="text-blue-600 hover:text-blue-800 transition">
+                                <a href="../crud/edit-destinasi.php?id=<?= $res['id_destinasi'] ?>" class="text-blue-600 hover:text-blue-800 transition">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="../crud/delete-fasilitas.php?id=<?= $res['id_fasilitas']?>" onclick="return confirm('Apakah anda yakin mau hapus data ini?')" class="text-red-600 hover:text-red-800 transition">
+                                <a href="../crud/delete-destinasi.php?id=<?= $res['id_destinasi'] ?>" onclick="return confirm('Apakah anda yakin mau hapus data ini?')" class="text-red-600 hover:text-red-800 transition">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

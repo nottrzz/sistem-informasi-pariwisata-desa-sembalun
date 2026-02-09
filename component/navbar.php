@@ -29,7 +29,7 @@
                     <a href="#destinasi" class="text-gray-700 hover:text-green-700font-medium">Destinasi</a>
                     <a href="#paket" class="text-gray-700 hover:text-green-700 font-medium">Fasilitas</a>
                     <a href="#kontak" class="text-gray-700 hover:text-green-700 font-medium">Kontak</a>
-                      <a href="login.html" class="bg-green-700 hover:text-green-800 text-white px-6 py-2 rounded-full font-medium transition-all">
+                      <a href="../auth/login.php" class="bg-green-700 hover:text-green-800 text-white px-6 py-2 rounded-full font-medium transition-all">
                         <i class="fas fa-sign-in-alt mr-2"></i>Login
                     </a>
                 </div>

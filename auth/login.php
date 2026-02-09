@@ -1,3 +1,44 @@
+<?php
+session_start();
+require "../db/connect.php";
+
+if(isset($_POST['login'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $ambildlu = mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username' AND password = '$password'");
+
+    $cekrow = mysqli_num_rows($ambildlu);
+    if($cekrow > 0 ){
+        $fetch = mysqli_fetch_assoc($ambildlu);
+
+        if($fetch['role'] == 1){
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = 1;
+            echo "
+            <script> alert('berhasil login dan akan di arahkan ke halaman dashboard admin'); location.href = '../admin/index.php' </script>
+            ";
+        }elseif($fetch['role'] == 0){
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = 0;
+            echo "
+            <script> alert('berhasil login dan akan di arahkan ke halaman dashboard operator'); location.href = '../operator/index.php' </script>
+            ";
+        }else{
+               echo "
+            <script> alert('username atau password salah!');</script>
+            ";
+        }
+    }else{
+         echo "
+            <script> alert('username atau password salah!');</script>
+            ";
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -44,7 +85,6 @@
                                 <input type="text" name="username" 
                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
                                        placeholder="Enter Your Username" required>
-                                <div class="text-red-500 text-sm mt-1 hidden">Username Tidak Valid</div>
                             </div>
                             
                             <div class="mb-6">

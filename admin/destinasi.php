@@ -37,7 +37,7 @@
 </head>
 <body class="bg-gray-100">
   <!-- Main Container -->
-<div class="flex h-screen">
+<div class="flex min-h-screen">
     <!-- Sidebar -->
     <?php require "../component/sidebar.php"; ?>
 
@@ -45,7 +45,7 @@
     <div class="main-content flex-1 flex flex-col overflow-hidden">
         <?php require "../component/top-header.php"; ?>
 
-        <div class="overflow-x-auto mt-16 mb-2.5 px-8 md:px-8">
+        <div class="overflow-x-auto mt-5 px-8 md:px-8">
 
             <!-- Button Tambah -->
             <button class="bg-green-700 hover:bg-green-900 transition text-white font-bold px-8 py-3 rounded-2xl shadow-md my-5">

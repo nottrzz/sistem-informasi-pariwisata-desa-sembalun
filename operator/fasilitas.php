@@ -39,11 +39,11 @@
   <!-- Main Container -->
 <div class="flex h-screen">
     <!-- Sidebar -->
-    <?php require "../component/sidebar.php"; ?>
+    <?php require "../component/sidebar-operator.php"; ?>
 
     <!-- Main Content -->
     <div class="main-content flex-1 flex flex-col overflow-hidden">
-        <?php require "../component/top-header.php"; ?>
+        <?php require "../component/top-header-operator.php"; ?>
 
         <div class="overflow-x-auto mt-20 px-8 md:px-8">
 
